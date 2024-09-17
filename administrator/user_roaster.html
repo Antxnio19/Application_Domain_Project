@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Table</title>
+    <link rel="stylesheet" href="./administrator_stylesheet.css">
+    <link rel="stylesheet" href="./user_roaster_stylesheet.css">
+</head>
+<body>
+
+    <nav>
+        <div class="welcome">
+            <img src="../images/Aang.png" alt="Picture" class="picture">
+            <h1>Welcome Administrator!</h1>
+        </div>
+        <ul>
+            <li><a href="./administrator_home.html">Home</a></li>
+            <li><a href="./it_ticket.html">IT Ticket</a></li>
+            <li><a class="active" href="./logout.html">Logout</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <h2>User Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>Date of Birth</th>
+                    <th>Password</th>
+                    <th>Position</th>
+                    <th>Password Expiry Duration (Days)</th>
+                    <th>Action</th> <!-- New column for actions -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>123 Main St, Anytown, USA</td>
+                    <td>1990-01-01</td>
+                    <td>password123</td>
+                    <td>Administrator</td>
+                    <td>90</td>
+                    <td><button onclick="updateUser('John')">Update</button></td> <!-- Update button -->
+                </tr>
+                <tr>
+                    <td>Jane</td>
+                    <td>Smith</td>
+                    <td>456 Elm St, Othertown, USA</td>
+                    <td>1985-05-15</td>
+                    <td>securePass456</td>
+                    <td>User</td>
+                    <td>90</td>
+                    <td><button onclick="updateUser('Jane')">Update</button></td> <!-- Update button -->
+                </tr>
+                 <!-- TODO we need to create the backend and connect it to dynamically fill this table -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function updateUser(userName) {
+            // Redirect to the update form page with the user's name as a query parameter
+            window.location.href = `update_user_form.html?user=${encodeURIComponent(userName)}`;
+        }
+    </script>
+</body>
+</html>
+
+
+
+
