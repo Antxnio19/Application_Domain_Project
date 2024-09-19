@@ -1,0 +1,75 @@
+:root {
+    --background-color: #3399FF;
+    --container-background: white;
+    --input-border: #ccc;
+    --button-color: #0056b3;
+    --button-hover-color: #003d80; /* Darker color for hover state */
+    --link-color: #0056b3;
+    --text-color: black;
+    --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    --border-radius: 10px;
+}
+
+/* Main container styling for Create User */
+.main {
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: var(--container-background);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    width: 100%;
+    max-width: 500px; /* Ensures container is not too wide */
+    min-height: 500px; /* Ensures container has enough height */
+    margin: 0 auto; /* Center container horizontally */
+}
+
+h2 {
+    margin-bottom: 20px; /* Space between header and form elements */
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="date"], select {
+    width: 90%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 95%;
+    padding: 10px;
+    background-color: var(--button-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#passwordRequirements {
+    text-align: left;
+    margin: 10px 0;
+}
+
+#passwordRequirements p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.invalid {
+    color: red;
+}
+
+.valid {
+    color: green;
+}
