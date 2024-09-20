@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LedgerLedgends", "LedgerLedgends\LedgerLedgends.sqlproj", "{586192CE-E294-4255-ABC5-DE784A737EE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{586192CE-E294-4255-ABC5-DE784A737EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{586192CE-E294-4255-ABC5-DE784A737EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{586192CE-E294-4255-ABC5-DE784A737EE5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{586192CE-E294-4255-ABC5-DE784A737EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{586192CE-E294-4255-ABC5-DE784A737EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{586192CE-E294-4255-ABC5-DE784A737EE5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75FC114D-0D1F-4E4B-BBB2-052AAA5FD43D}
+	EndGlobalSection
+EndGlobal
