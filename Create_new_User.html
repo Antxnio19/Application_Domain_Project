@@ -12,19 +12,17 @@
             <img src="profile.png" alt="Company Logo">
         </div>
         <h2>Sign Up</h2>
-        <form id="createUserForm">
+        <form id="createUserForm" action="Create_user.php" method="POST">
             <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
             <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
             <input type="email" id="email" name="email" placeholder="Email" required>
             <input type="date" id="dob" name="dob" required min="1920-01-01" max="2024-12-31">
             <input type="text" id="address" name="address" placeholder="Address" required>
 
-            <!-- Username and Password Fields -->
             <input type="text" id="username" name="username" placeholder="Create Username" required>
             <input type="password" id="password" name="password" placeholder="Create Password" required>
             <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
 
-            <!-- Password Requirements -->
             <div id="passwordRequirements">
                 <p id="lengthRequirement" class="invalid">Minimum 8 characters</p>
                 <p id="letterRequirement" class="invalid">Starts with a letter</p>
@@ -32,7 +30,6 @@
                 <p id="specialRequirement" class="invalid">Contains a special character</p>
             </div>
 
-            <!-- Security Question -->
             <select id="securityQuestion" name="securityQuestion" required>
                 <option value="" disabled selected>Select a Security Question</option>
                 <option value="q1">What was your first pet's name?</option>
