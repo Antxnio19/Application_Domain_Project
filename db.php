@@ -1,11 +1,11 @@
 <?php
-$servername = "your_database_endpoint"; // Replace with your RDS endpoint
-$username = "your_db_username"; // Replace with your DB username
-$password = "your_db_password"; // Replace with your DB password
+$servername = "localhost"; // Replace with your RDS endpoint
+$username = "sa"; // Replace with your DB username
+$password = "dcpomc21dcpomc21felka."; // Replace with your DB password
 $dbname = "your_db_name"; // Replace with your database name
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect("localhost", "sa", "dcpomc21dcpomc21felka.", "your_db_name");
 
 // Check connection
 if ($conn->connect_error) {

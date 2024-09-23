@@ -13,8 +13,8 @@
         </div>
         <h2>Sign Up</h2>
         <form id="createUserForm" action="Create_user.php" method="POST">
-            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
-            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+            <input type="text" id="first_name" name="first_name" placeholder="First_Name" required>
+            <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
             <input type="email" id="email" name="email" placeholder="Email" required>
             <input type="date" id="dob" name="dob" required min="1920-01-01" max="2024-12-31">
             <input type="text" id="address" name="address" placeholder="Address" required>
@@ -30,7 +30,7 @@
                 <p id="specialRequirement" class="invalid">Contains a special character</p>
             </div>
 
-            <select id="securityQuestion" name="securityQuestion" required>
+            <select id="security_question" name="security_question" required>
                 <option value="" disabled selected>Select a Security Question</option>
                 <option value="q1">What was your first pet's name?</option>
                 <option value="q2">What is your mother's maiden name?</option>
@@ -38,7 +38,7 @@
                 <option value="q4">What is your favorite book?</option>
                 <option value="q5">What city were you born in?</option>
             </select>
-            <input type="text" id="securityAnswer" name="securityAnswer" placeholder="Answer" required>
+            <input type="text" id="security_answer" name="security_answer" placeholder="Answer" required>
 
             <button type="submit">Submit Request</button>
         </form>
