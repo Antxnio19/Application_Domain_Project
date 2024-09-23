@@ -3,11 +3,35 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Create connection
-try {
-    $conn = new PDO("sqlsrv:server=localhost;Database=your_db_name", "sa", "dcpomc21dcpomc21felka.");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+$conn = mysqli_connect("localhost", "root", "root", "accounting_db");
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Create the table if it does not exist
+$table_sql = "CREATE TABLE IF NOT EXISTS Table1 (
+    Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    UserTypeId CHAR(10) NOT NULL,
+    Username VARCHAR(50) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    EmailAddress VARCHAR(100) NOT NULL,
+    DateOfBirth DATE NOT NULL,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Address VARCHAR(255) NOT NULL,
+    SecurityQuestions CHAR(10) NULL,
+    SecurityAnswers CHAR(10) NULL,
+    FailedAttempts INT DEFAULT 0,
+    LockoutUntil DATETIME NULL,
+    CreatedDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    ModifiedDate DATETIME ON UPDATE CURRENT_TIMESTAMP,
+    ModifiedBy VARCHAR(50)
+)";
+
+if (!$conn->query($table_sql)) {
+    die("Error creating table: " . $conn->error);
 }
 
 $first_name = $_POST['first_name'];
@@ -23,23 +47,20 @@ $security_answer = $_POST['security_answer'];
 // Hash the password
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-// Insert user into the database
-$sql = "INSERT INTO Table1 (FirstName, LastName, DateOfBirth, EmailAddress, Address, Username, Password, SecurityQuestions, SecurityAnswers)
-        VALUES (:first_name, :last_name, :dob, :email, :address, :username, :password, :security_question, :security_answer)";
+// Prepare the SQL statement for insertion
+$in = $conn->prepare("INSERT INTO Table1 (UserTypeId, Username, Password, EmailAddress, DateOfBirth, FirstName, LastName, Address, SecurityQuestions, SecurityAnswers) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-$stmt = $conn->prepare($sql);
+// Bind parameters
+$in->bind_param('ssssssssss', $userTypeId, $username, $hashedPassword, $email, $dob, $first_name, $last_name, $address, $security_question, $security_answer);
 
-$stmt->bindParam(':first_name', $first_name);
-$stmt->bindParam(':last_name', $last_name);
-$stmt->bindParam(':dob', $dob);
-$stmt->bindParam(':email', $email);
-$stmt->bindParam(':address', $address);
-$stmt->bindParam(':username', $username);
-$stmt->bindParam(':password', $hashedPassword);
-$stmt->bindParam(':security_question', $security_question);
-$stmt->bindParam(':security_answer', $security_answer);
+// Set `UserTypeId` manually for now
+$userTypeId = "Accountant"; // Placeholder for now
 
-$stmt->execute();
-
-header('Location: login.html');
+// Execute the statement
+if ($in->execute()) {
+    header('Location: login.html');  // Redirect to login page after successful insertion
+} else {
+    die("Error inserting data: " . $conn->error);
+}
 ?>
