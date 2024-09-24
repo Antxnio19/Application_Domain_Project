@@ -1,3 +1,20 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Create connection
+$conn = mysqli_connect("localhost", "root", "root", "accounting_db");
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query to select all users from UserTable
+$sql = "SELECT * FROM Table1";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +29,6 @@
             <img src="profile.png" alt="Picture" class="picture">
             <h1>Ledger Ledgend Administrator</h1>
         </div>
-        <!-- Profile and logout section -->
         <div class="user-profile">
             <img src="pfp.png" alt="User Picture" class="profile-pic">
             <span class="username">Jtrejo0924</span>
@@ -20,7 +36,6 @@
         </div>
     </nav>
 
-    <!-- Navigation Bar -->
     <div class="main-bar">
         <a href="./administrator_home.html" class="nav-link">Home</a>
         <a href="./it_ticket.html" class="nav-link">IT Ticket</a>
@@ -28,7 +43,7 @@
             <button class="dropbtn">User Management</button>
             <div class="dropdown-content">
                 <a href="./create_new_user_admin.html">Create User</a>
-                <a href="./user_roaster.html">View Users</a>
+                <a href="./user_roaster.php">View Users</a>
                 <a href="./Manage_Users.html">Account Approval</a>
             </div>
         </div>
@@ -60,62 +75,49 @@
         </div>
     </div>
 
-    <!-- Main content area for table -->
     <div class="main-content">
         <table>
             <thead>
                 <tr>
-                    <th>User ID</th>
+                    <th>ID</th>
+                    <th>User Type ID</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email Address</th>
+                    <th>Date of Birth</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Address</th>
-                    <th>Date of Birth</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Date Created</th>
-                    <th>Password</th>
-                    <th>Position</th>
-                    <th>Password Expiry Duration (Days)</th>
+                    <th>Failed Attempts</th>
+                    <th>Lockout Until</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>123 Main St, Anytown, USA</td>
-                    <td>1990-01-01</td>
-                    <td>john.doe@example.com</td>
-                    <td>johndoe</td>
-                    <td>2023-01-15</td>
-                    <td>password123</td>
-                    <td>Administrator</td>
-                    <td>90</td>
-                    <td><button class="update-button" onclick="updateUser('John')">Update</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Jane</td>
-                    <td>Smith</td>
-                    <td>456 Elm St, Othertown, USA</td>
-                    <td>1985-05-15</td>
-                    <td>jane.smith@example.com</td>
-                    <td>janesmith</td>
-                    <td>2023-02-20</td>
-                    <td>securePass456</td>
-                    <td>User</td>
-                    <td>90</td>
-                    <td><button class="update-button" onclick="updateUser('Jane')">Update</button></td>
-                </tr>
+                <?php
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo '<tr>
+                                <td>' . $row['Id'] . '</td>
+                                <td>' . $row['UserTypeId'] . '</td>
+                                <td>' . $row['Username'] . '</td>
+                                <td>' . $row['Password'] . '</td>
+                                <td>' . $row['EmailAddress'] . '</td>
+                                <td>' . $row['DateOfBirth'] . '</td>
+                                <td>' . $row['FirstName'] . '</td>
+                                <td>' . $row['LastName'] . '</td>
+                                <td>' . $row['FailedAttempts'] . '</td>
+                                <td>' . $row['LockoutUntil'] . '</td>
+                                <td><button class="update-button" onclick="window.location.href=\'update_user.php?id=' . $row['Id'] . '\'">Update</button></td>
+                            </tr>';
+                    }
+                } else {
+                    echo '<tr><td colspan="11">No users found</td></tr>';
+                }
+                // Close the connection
+                $conn->close();
+                ?>
             </tbody>
-        </table>
+        </table>    
     </div>
-
-    <script>
-        function updateUser(userName) {
-            window.location.href = `update_users_info.html?user=${encodeURIComponent(userName)}`;
-        }
-    </script>
 </body>
 </html>

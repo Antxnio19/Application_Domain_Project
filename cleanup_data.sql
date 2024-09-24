@@ -20,3 +20,5 @@ DROP INDEX IF EXISTS IX_EmailAddress ON [dbo].[Table1];
 -- Drop Tables
 DROP TABLE IF EXISTS [dbo].[Table1];
 DROP TABLE IF EXISTS [dbo].[UserTypeTable];
+
+

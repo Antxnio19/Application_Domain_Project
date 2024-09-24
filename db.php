@@ -1,14 +1,28 @@
 <?php
-$servername = "localhost"; // Replace with your RDS endpoint
-$username = "sa"; // Replace with your DB username
-$password = "dcpomc21dcpomc21felka."; // Replace with your DB password
-$dbname = "your_db_name"; // Replace with your database name
+  $db_host = 'localhost';
+  $db_user = 'root';
+  $db_password = 'root';
+  $db_db = 'mydatabase';
+ 
+  $mysqli = @new mysqli(
+    $db_host,
+    $db_user,
+    $db_password,
+    $db_db
+  );
+	
+  if ($mysqli->connect_error) {
+    echo 'Errno: '.$mysqli->connect_errno;
+    echo '<br>';
+    echo 'Error: '.$mysqli->connect_error;
+    exit();
+  }
 
-// Create connection
-$conn = mysqli_connect("localhost", "sa", "dcpomc21dcpomc21felka.", "your_db_name");
+  echo 'Success: A proper connection to MySQL was made.';
+  echo '<br>';
+  echo 'Host information: '.$mysqli->host_info;
+  echo '<br>';
+  echo 'Protocol version: '.$mysqli->protocol_version;
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+  $mysqli->close();
 ?>

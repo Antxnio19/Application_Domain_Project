@@ -1,0 +1,36 @@
+September 24, 2024
+
+1. Download MAMP free version
+	--> https://www.mamp.info/en/mac/
+	--> 5 min tutorial for MAMP (https://www.youtube.com/watch?v=N0CPgBrjpl8)
+	--> 10 min tutorial for MAMP and MySQL (https://www.youtube.com/watch?v=tmvL_TlLEhA)
+2. Create a symbolic link betwen a folder in the htdocs file folder and the file folder in my github desktop so changes in one folder are reflected in the other.
+	--> ln -s ~/Documents/GitHub/Application_Domain_Project /Applications/MAMP/htdocs/App_domain/ 
+	--> commit changes to github
+3.In MyPHPAdmin create new db import the SQL files
+	--> Table1.sql
+	--> insert_sample_data.sql
+4. We need to use the same db name --> accounting_db
+		--> I am using username = root and password = root
+		--> Access html files at /Applications/MAMP/htdocs instead of localhost
+
+5. Table1 --> should be refactored to be db_Schema and we can write all our tables in one file to reduce the number of files needed to start our db. 
+
+6. My Post request for the IT_ticket is being sent but the server is not accepting it. Could someone help with this? 
+		--> we need to grab the user id of the person logged in and attach it to the IT Ticket
+		--> we need to refine the action links.
+7. We need to check all the nav bar links. 
+
+September 17, 2024
+
+(Pending)
+--> What does email management mean? should we be able to connect it to outlook or should we be able to send emails or send and receive emails....setting up a simple form to send emails that works is doable but the other two are a little harder. I would have to do research. 
+--> We need to add Primary Keys to our Database and retrieve users using them. Employee ID...this will require editing the forms once this is done.
+--> Administrator resetting account password functionality should be enough to send email or should the admin fill out a form and send a temporary password.
+--> Reports and Notifications require the backend....we can build out the forms like the user roaster but we need data to display. 
+--> share pages like IT ticket and logout page need to be refactor once we connect them to the database. 
+
+(Resolved):
+--> (Resolved) Don't need a sign up page. Unless, you want to create a view for customers.
+--> (Resolved) I used the create user html but created a new file because for security concerns an administrator creating a new user and a client creating a profile should be treated differently. 
+--> (Resolved) The user roaster needs to be connected to the backend and  to dynamically fill this table using js.
