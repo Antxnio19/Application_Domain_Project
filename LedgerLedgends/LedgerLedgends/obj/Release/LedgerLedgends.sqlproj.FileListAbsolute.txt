@@ -1,0 +1,10 @@
+C:\Users\14703\source\repos\LedgerLedgends\LedgerLedgends\bin\Release\LedgerLedgends.dacpac
+C:\Users\14703\source\repos\LedgerLedgends\LedgerLedgends\bin\Release\LedgerLedgends.dll
+C:\Users\14703\source\repos\LedgerLedgends\LedgerLedgends\bin\Release\LedgerLedgends.pdb
+C:\Users\14703\source\repos\LedgerLedgends\LedgerLedgends\obj\Release\LedgerLedgends.sqlproj.AssemblyReference.cache
+C:\Users\14703\source\repos\LedgerLedgends\LedgerLedgends\obj\Release\Model.xml
+C:\Users\14703\source\repos\LedgerLedgends\LedgerLedgends\obj\Release\refactor.xml
+C:\Users\14703\source\repos\LedgerLedgends\LedgerLedgends\obj\Release\postdeploy.sql
+C:\Users\14703\source\repos\LedgerLedgends\LedgerLedgends\obj\Release\predeploy.sql
+C:\Users\14703\source\repos\LedgerLedgends\LedgerLedgends\obj\Release\LedgerLedgends.dll
+C:\Users\14703\source\repos\LedgerLedgends\LedgerLedgends\obj\Release\LedgerLedgends.pdb
