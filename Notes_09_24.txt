@@ -1,0 +1,8 @@
+1. Download MAMP free version
+	--> https://www.mamp.info/en/mac/
+	--> 5 min tutorial for MAMP (https://www.youtube.com/watch?v=N0CPgBrjpl8)
+	--> 10 min tutorial for MAMP and MySQL (https://www.youtube.com/watch?v=tmvL_TlLEhA)
+2. Create a symbolic link betwen a folder in the htdocs file folder and the file folder in my github desktop so changes in one folder are reflected in the other.
+	--> ln -s ~/Documents/GitHub/Application_Domain_Project /Applications/MAMP/htdocs/App_domain/ 
+	--> commit changes to github
+3.
