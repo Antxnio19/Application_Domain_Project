@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legible Accounting - Login</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        window.onload = function() {
+            // Get the error message from the session via a hidden input
+            var errorMessage = document.getElementById('error-message').value;
+            if (errorMessage) {
+                alert(errorMessage); // Show alert if there is an error
+            }
+        };
+    </script>
 </head>
 <body>
     <div class="login-container">
