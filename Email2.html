@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Email.css">
+    <link rel="icon" type="image/png" href="profile.png">
+    <title>Email</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .directEmail {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="welcome">
+            <img src="profile.png" alt="Picture" class="picture">
+            <h1>Ledger Legends Administrator</h1>
+        </div>
+        <!-- Profile and logout section -->
+        <div class="user-profile">
+            <img src="pfp.png" alt="User Picture" class="profile-pic">
+            <span class="username">Jtrejo0924</span>
+            <a href="./logout.html" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Navigation Bar -->
+    <div class="main-bar">
+        <!-- Home and IT Ticket as separate clickable links -->
+        <a href="./administrator_home.html" class="nav-link">Home</a>
+        <a href="./it_ticket.html" class="nav-link">IT Ticket</a>
+
+        <!-- User Management dropdown -->
+        <div class="dropdown">
+            <button class="dropbtn">User Management</button>
+            <div class="dropdown-content">
+                <a href="./create_new_user_admin.html">Create User</a>
+                <a href="./user_roaster.html">View Users</a>
+                <a href="./Manage_Users.html">Account Approval</a>
+            </div>
+        </div>
+
+        <!-- Reports dropdown -->
+        <div class="dropdown">
+            <button class="dropbtn">Reports</button>
+            <div class="dropdown-content">
+                <a href="#">User Report</a>
+                <a href="#">Expired Passwords Report</a>
+                <a href="#">Login Attempts Report</a>
+            </div>
+        </div>
+
+        <!-- Notifications dropdown -->
+        <div class="dropdown">
+            <button class="dropbtn">Notifications</button>
+            <div class="dropdown-content">
+                <a href="#">Password Expiration Alerts</a>
+            </div>
+        </div>
+
+        <!-- Email Management dropdown -->
+        <div class="dropdown">
+            <button class="dropbtn">Email Management</button>
+            <div class="dropdown-content">
+                <a href="#">Send Email</a>
+            </div>
+        </div>
+
+        <!-- Settings dropdown -->
+        <div class="dropdown">
+            <button class="dropbtn">Settings</button>
+            <div class="dropdown-content">
+                <a href="#">System Settings</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h2 align="center">Recent Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email Address</th>
+                    <th>Role</th>
+                    <th>Last Seen</th>
+                </tr>
+            </thead>
+            <tbody id="userList">
+                <?php
+                // Connect to the database
+                $conn = mysqli_connect("localhost", "root", "root", "accounting_db");
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Query to fetch user data
+                $sql = "SELECT Id, FirstName, LastName, EmailAddress, UserTypeId FROM Table1";
+                $result = $conn->query($sql);
+
+                // Check if there are any results
+                if ($result->num_rows > 0) {
+                    // Loop through each row in the result
+                    while ($row = $result->fetch_assoc()) {
+                        // Output table rows with data
+                        echo "<tr class='user-item' data-email='" . htmlspecialchars($row['EmailAddress']) . "'>";
+                        echo "<td>" . htmlspecialchars($row['Id']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['FirstName']) . " " . htmlspecialchars($row['LastName']) . "</td>";
+                        echo "<td><a href='mailto:" . htmlspecialchars($row['EmailAddress']) . "'>" . htmlspecialchars($row['EmailAddress']) . "</a></td>";
+                        echo "<td>" . htmlspecialchars($row['UserTypeId']) . "</td>";
+                        echo "<td>Now</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>No users found.</td></tr>";
+                }
+
+                // Close the connection
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
+
+        <div class="directEmail">
+            <h3>Enter a user's email</h3>
+            <form id="emailForm">
+                <label for="userEmail">User Email:</label><br>
+                <input type="email" id="userEmail" name="userEmail" required><br><br>
+                <label for="userMessage">Message:</label><br>
+                <textarea id="userMessage" name="userMessage" rows="4" cols="50" required></textarea><br><br>
+                <input type="submit" value="Send Email">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Inserts the selected user into the email field
+        document.querySelectorAll('.user-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const userEmail = this.getAttribute('data-email');
+                document.getElementById('userEmail').value = userEmail;
+            });
+        });
+    </script>
+</body>
+</html>
